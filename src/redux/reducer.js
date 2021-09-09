@@ -1,4 +1,4 @@
-import { ADD_BUG, REMOVE_BUG } from "./action";
+import { ADD_BUG, REMOVE_BUG, RESOLVE_BUG } from "./types";
 
 const initialid = 0;
 
@@ -20,6 +20,9 @@ export const bugreducer = (state = [], action) =>{
             ]
         case REMOVE_BUG:
             return state.filter(bug=> bug.id !== action.payload.id)
+
+        case RESOLVE_BUG:
+            return state.map(bug => bug.id !== action.payload.id ? bug : {...bug, resolved : true} )
 
         default: 
             return state;
